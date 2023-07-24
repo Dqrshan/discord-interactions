@@ -9,7 +9,7 @@ Types and helper functions that may come in handy when you implement a Discord I
 ## Installation
 
 ```
-npm install discord-interactions
+npm install @dqrshan/discord-interactions
 ```
 
 ## Usage
