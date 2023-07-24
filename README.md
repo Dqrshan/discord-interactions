@@ -1,5 +1,5 @@
-discord-interactions
----
+## discord-interactions
+
 [![version](https://img.shields.io/npm/v/discord-interactions.svg)](https://www.npmjs.com/package/discord-interactions)
 [![Build Status](https://travis-ci.com/discord/discord-interactions-js.svg?branch=main)](https://travis-ci.com/discord/discord-interactions-js)
 ![Downloads](https://img.shields.io/npm/dt/discord-interactions)
@@ -19,29 +19,29 @@ Use the `InteractionType` and `InteractionResponseType` enums to figure out how 
 Use `verifyKey` to check a request signature:
 
 ```js
- const signature = req.get('X-Signature-Ed25519');
- const timestamp = req.get('X-Signature-Timestamp');
- const isValidRequest = verifyKey(req.rawBody, signature, timestamp, 'MY_CLIENT_PUBLIC_KEY');
- if (!isValidRequest) {
-   return res.status(401).end('Bad request signature');
- }
+const signature = req.get('X-Signature-Ed25519');
+const timestamp = req.get('X-Signature-Timestamp');
+const isValidRequest = verifyKey(req.rawBody, signature, timestamp, 'MY_CLIENT_PUBLIC_KEY');
+if (!isValidRequest) {
+    return res.status(401).end('Bad request signature');
+}
 ```
 
 Note that `req.rawBody` must be populated by a middleware (it is also set by some cloud function providers).
 
-If you're using an express-like API, you can simplify things by using the `verifyKeyMiddleware`.  For example:
+If you're using an express-like API, you can simplify things by using the `verifyKeyMiddleware`. For example:
 
 ```js
 app.post('/interactions', verifyKeyMiddleware('MY_CLIENT_PUBLIC_KEY'), (req, res) => {
-  const message = req.body;
-  if (message.type === InteractionType.APPLICATION_COMMAND) {
-    res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
-        content: 'Hello world',
-      },
-    });
-  }
+    const message = req.body;
+    if (message.type === InteractionType.APPLICATION_COMMAND) {
+        res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+                content: 'Hello world'
+            }
+        });
+    }
 });
 ```
 
@@ -69,9 +69,9 @@ An enum of message component types that can be used in messages and modals.
 
 ### Message components
 
-Types for the different message component structures: `Button`, `ActionRow`, `StringSelect`, and `InputText`.
+Classes for the different message component structures: `Button`, `ActionRow`, `StringSelectMenu`, and `TextInput`.
 
-Also includes the enums `ButtonStyleTypes` and `TextStyleTypes`, and a `StringSelectOption` type.
+Also includes the enums `ButtonStyle` and `TextStyle`, and a `StringSelectOption` type.
 
 ### `verifyKey(rawBody: Buffer, signature: string, timestamp: string, clientPublicKey: string): Promise<boolean>`
 
