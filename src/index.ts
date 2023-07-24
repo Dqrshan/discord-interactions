@@ -1,5 +1,6 @@
 import nacl from 'tweetnacl';
 import type { Request, Response, NextFunction } from 'express';
+import { TextEncoder } from 'util';
 
 /**
  * The type of interaction this request is.
